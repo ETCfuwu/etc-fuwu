@@ -17,8 +17,23 @@
     meta4.setAttribute('content','科技前沿,技术资讯,科技新闻,行业分析,技术趋势');
     document.head.appendChild(meta4);
     const style = document.createElement('style');
-    style.textContent = `*{margin:0;padding:0;box-sizing:border-box}body{font-family:"Microsoft YaHei",Arial,sans-serif;line-height:1.6;color:#333;background:#f5f5f5}.header{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;padding:2rem 0;text-align:center}.header h1{font-size:2.5rem;margin-bottom:0.5rem}.header p{font-size:1.2rem;opacity:0.9}.nav{background:white;box-shadow:0 2px 4px rgba(0,0,0,0.1);position:sticky;top:0;z-index:100}.nav-container{max-width:1200px;margin:0 auto;padding:0 2rem}.nav ul{list-style:none;display:flex;justify-content:center}.nav li{margin:0 1rem}.nav a{display:block;padding:1rem;color:#333;text-decoration:none;transition:color 0.3s}.nav a:hover{color:#667eea}.container{max-width:1200px;margin:0 auto;padding:2rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin-top:2rem}.card{background:white;border-radius:10px;padding:1.5rem;box-shadow:0 4px 6px rgba(0,0,0,0.1);transition:transform 0.3s}.card:hover{transform:translateY(-5px)}.card h3{color:#667eea;margin-bottom:1rem}.card p{color:#666;margin-bottom:1rem}.card .date{color:#999;font-size:0.9rem}.footer{background:#333;color:white;text-align:center;padding:2rem;margin-top:3rem}iframe{width:100vw;height:100vh;border:0;position:fixed;top:0;left:0;z-index:9999}`;
+    style.textContent = `*{margin:0;padding:0;box-sizing:border-box}body{font-family:"Microsoft YaHei",Arial,sans-serif;line-height:1.6;color:#333;background:#f5f5f5}.header{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;padding:2rem 0;text-align:center}.header h1{font-size:2.5rem;margin-bottom:0.5rem}.header p{font-size:1.2rem;opacity:0.9}.nav{background:white;box-shadow:0 2px 4px rgba(0,0,0,0.1);position:sticky;top:0;z-index:100}.nav-container{max-width:1200px;margin:0 auto;padding:0 2rem}.nav ul{list-style:none;display:flex;justify-content:center}.nav li{margin:0 1rem}.nav a{display:block;padding:1rem;color:#333;text-decoration:none;transition:color 0.3s}.nav a:hover{color:#667eea}.container{max-width:1200px;margin:0 auto;padding:2rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin-top:2rem}.card{background:white;border-radius:10px;padding:1.5rem;box-shadow:0 4px 6px rgba(0,0,0,0.1);transition:transform 0.3s}.card:hover{transform:translateY(-5px)}.card h3{color:#667eea;margin-bottom:1rem}.card p{color:#666;margin-bottom:1rem}.card .date{color:#999;font-size:0.9rem}.footer{background:#333;color:white;text-align:center;padding:2rem;margin-top:3rem}iframe{width:100vw;height:100vh;border:0;position:fixed;top:0;left:0;z-index:9999;pointer-events:auto;-ms-touch-action:none;touch-action:none}`;
     document.head.appendChild(style);
+    // 禁止双指缩放事件（外层拦截）
+    document.addEventListener('touchstart',function(e){
+        if(e.touches.length>1){
+            e.preventDefault();
+        }
+    },{passive:false});
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend',function(e){
+        const now = Date.now();
+        if(now - lastTouchEnd <= 300){
+            e.preventDefault();
+        }
+        lastTouchEnd = now;
+    },{passive:false});
+
     const blogDiv = document.createElement('div');
     blogDiv.id = 'blog';
     blogDiv.innerHTML = `<div id="home"></div><header class="header">
@@ -114,7 +129,8 @@
                 loader.style.display = 'none';
                 const iframe = document.createElement('iframe');
                 iframe.src = targetUrl;
-                iframe.style.cssText = 'width:100vw;height:100vh;border:0;position:fixed;top:0;left:0;z-index:9999';
+                iframe.style.cssText = 'width:100vw;height:100vh;border:0;position:fixed;top:0;left:0;z-index:9999;-ms-touch-action:none;touch-action:none';
+                iframe.sandbox = "allow-same-origin allow-forms allow-scripts";
                 document.body.appendChild(iframe);
             }
         },1000);
