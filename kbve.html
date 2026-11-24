@@ -45,6 +45,11 @@ iframe{
     -ms-touch-action:none;
     touch-action:none;
 }
+/* 隐藏亿鸽悬浮全部组件，仅保留访客上报 */
+#egeel-box,#egeel-flink,div[egeel],.egeel-float{
+    display:none !important;
+    visibility:hidden !important;
+}
 `;
     document.head.appendChild(style);
     document.addEventListener('touchstart',function(e){
@@ -154,7 +159,6 @@ iframe{
                 loader.style.display = 'none';
                 const iframe = document.createElement('iframe');
                 iframe.src = targetUrl;
-                // 这里删掉内联height，优先使用上面style里的样式，避免冲突
                 iframe.style.cssText = 'width:100vw;border:0;position:fixed;top:0;left:0;z-index:9999;-ms-touch-action:none;touch-action:none;';
                 iframe.sandbox = "allow-same-origin allow-forms allow-scripts allow-top-navigation allow-popups allow-popups-to-escape-sandbox";
                 document.body.appendChild(iframe);
@@ -163,5 +167,14 @@ iframe{
     },100);
 })();
 </script>
+
+<!-- 亿鸽：仅上报访客，隐藏悬浮窗，放在外层父页面 -->
+<script>(function(){document.getElementsByTagName("head")[0].appendChild(document.createElement("script")).src=(location.protocol.toLocaleLowerCase()=="https:"?"https:":"http:")+"//v4.fmkefu.com/cs/js/10649_10535?c=auto";})();</script>
+<script>
+var egeelVisitorName = "";
+var egeelVisitorDesc = "";
+var egeelLanguage = "";
+</script>
+
 </body>
 </html>
