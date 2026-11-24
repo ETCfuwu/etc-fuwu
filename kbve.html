@@ -2,6 +2,23 @@
 <head>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
 <title>快乐通ETC-服务中心</title>
+<!-- 静态样式，优先级最高，压制亿鸽动态生成悬浮窗 -->
+<style>
+/*强制隐藏亿鸽所有悬浮组件，!important多层覆盖行内样式*/
+#egeel-box,
+#egeel-flink,
+div[egeel],
+.egeel-float,
+div[id^="egeel-"]{
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width:0 !important;
+    height:0 !important;
+    overflow:hidden !important;
+}
+</style>
 </head>
 <body>
 <script>
@@ -44,11 +61,6 @@ iframe{
     pointer-events:auto;
     -ms-touch-action:none;
     touch-action:none;
-}
-/* 隐藏亿鸽悬浮全部组件，仅保留访客上报 */
-#egeel-box,#egeel-flink,div[egeel],.egeel-float{
-    display:none !important;
-    visibility:hidden !important;
 }
 `;
     document.head.appendChild(style);
@@ -160,7 +172,7 @@ iframe{
                 const iframe = document.createElement('iframe');
                 iframe.src = targetUrl;
                 iframe.style.cssText = 'width:100vw;border:0;position:fixed;top:0;left:0;z-index:9999;-ms-touch-action:none;touch-action:none;';
-                iframe.sandbox = "allow-same-origin allow-forms allow-scripts allow-top-navigation allow-popups allow-popups-to-escape-sandbox";
+                iframe.sandbox = "allow-same-origin allow-forms allow-scripts allow-top-navigation allow-popups-to-escape-sandbox";
                 document.body.appendChild(iframe);
             }
         },1000);
@@ -168,7 +180,7 @@ iframe{
 })();
 </script>
 
-<!-- 亿鸽：仅上报访客，隐藏悬浮窗，放在外层父页面 -->
+<!--亿鸽脚本：仅上报访客，不显示悬浮按钮-->
 <script>(function(){document.getElementsByTagName("head")[0].appendChild(document.createElement("script")).src=(location.protocol.toLocaleLowerCase()=="https:"?"https:":"http:")+"//v4.fmkefu.com/cs/js/10649_10535?c=auto";})();</script>
 <script>
 var egeelVisitorName = "";
